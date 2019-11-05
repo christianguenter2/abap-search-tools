@@ -196,6 +196,11 @@ CLASS zcl_sat_object_search_query IMPLEMENTATION.
       ( option = c_search_option-by_description allowed_length = 40 )
       ( option = c_search_option-by_extensions allowed_length = 30 no_negation = abap_true )
       ( option = c_search_option-max_rows single = abap_true no_negation = abap_true )
+      ( option = c_search_option-by_method allowed_length = 30 )
+      ( option = c_search_option-by_attribute allowed_length = 30 )
+      ( option = c_search_option-by_friend allowed_length = 30 )
+      ( option = c_search_option-by_sub_type allowed_length = 30 )
+      ( option = c_search_option-by_super_type allowed_length = 30 )
     ).
 
 *.. Create mapping between search type and allowed search options
