@@ -18,6 +18,14 @@ INTERFACE zif_sat_c_object_browser
       by_param       TYPE string VALUE 'PARAM',
       max_rows       TYPE string VALUE 'MAXROWS',
       by_extensions  TYPE string VALUE 'EXTBY',
+*.... The following options are only for AIE so no convenient
+*...... short form is needed
+      by_attribute   TYPE string VALUE 'attribute',
+      by_method      TYPE string VALUE 'method',
+      by_super_type  TYPE string VALUE 'superType',
+      by_sub_type    TYPE string VALUE 'subType',
+      by_interface   TYPE string VALUE 'interface',
+      by_friend      TYPE string VALUE 'friend',
     END OF c_search_option.
 
   CONSTANTS:

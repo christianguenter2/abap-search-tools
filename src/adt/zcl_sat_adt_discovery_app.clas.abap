@@ -114,6 +114,14 @@ CLASS zcl_sat_adt_discovery_app IMPLEMENTATION.
                                 iv_handler_class    = zif_sat_c_adt_utils=>c_resource_handler-object_search_dbtabview
                                 iv_search_type      = zif_sat_c_object_browser_mode=>database_table_view
                                 iv_search_type_term = |dbtabview| ).
+    reg_object_search_template( io_collection       = lo_search_collection
+                                iv_handler_class    = zif_sat_c_adt_utils=>c_resource_handler-object_search_class
+                                iv_search_type      = zif_sat_c_object_browser_mode=>abap_class
+                                iv_search_type_term = |class| ).
+    reg_object_search_template( io_collection       = lo_search_collection
+                                iv_handler_class    = zif_sat_c_adt_utils=>c_resource_handler-object_search_interface
+                                iv_search_type      = zif_sat_c_object_browser_mode=>interface
+                                iv_search_type_term = |interface| ).
 ***    reg_object_search_template( io_collection       = lo_search_collection
 ***                                iv_handler_class    = zif_sat_c_adt_utils=>c_resource_handler-object_search_all
 ***                                iv_search_type      = zif_sat_c_object_browser_mode=>all
@@ -153,6 +161,19 @@ CLASS zcl_sat_adt_discovery_app IMPLEMENTATION.
       WHEN zif_sat_c_object_browser_mode=>database_table_view.
         lv_template = lv_template && |\{&{ zif_sat_c_adt_utils=>c_search_query_parameter-field }*\}| &&
                                      |\{&{ zif_sat_c_adt_utils=>c_search_query_parameter-type }*\}|.
+
+      WHEN zif_sat_c_object_browser_mode=>abap_class.
+        lv_template = lv_template && |\{&{ zif_sat_c_object_browser=>c_search_option-by_method }*\}| &&
+                                     |\{&{ zif_sat_c_object_browser=>c_search_option-by_attribute }*\}| &&
+                                     |\{&{ zif_sat_c_object_browser=>c_search_option-by_interface }*\}| &&
+                                     |\{&{ zif_sat_c_object_browser=>c_search_option-by_sub_type }*\}| &&
+                                     |\{&{ zif_sat_c_object_browser=>c_search_option-by_super_type }*\}| &&
+                                     |\{&{ zif_sat_c_object_browser=>c_search_option-by_friend }*\}|.
+
+      WHEN zif_sat_c_object_browser_mode=>interface.
+        lv_template = lv_template && |\{&{ zif_sat_c_object_browser=>c_search_option-by_method }*\}| &&
+                                     |\{&{ zif_sat_c_object_browser=>c_search_option-by_attribute }*\}| &&
+                                     |\{&{ zif_sat_c_object_browser=>c_search_option-by_interface }*\}|.
 
     ENDCASE.
 
